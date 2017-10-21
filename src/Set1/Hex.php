@@ -17,10 +17,17 @@ class Hex
      */
     private static $charlist = '0123456789abcdef';
 
+    /**
+     * Convert base 10 encoded binary to a decimal number.
+     *
+     * @param int $bin base 10 encoded binary number.
+     * @return int Decimal number
+     */
     private function binToDec(int $bin): int
     {
         $dec = 0;
         $pos = 0;
+
         while ($bin) {
             if ($pos === 0) {
                 $dec = ($bin & 1);
@@ -73,7 +80,6 @@ class Hex
         while ($bin > 0) {
             $byte = $bin & $mask;
             $string .= chr($this->binToDec(gmp_intval($byte)));
-//            $string .= chr(gmp_intval($byte));
             $bin = $bin >> 8;
         }
 
